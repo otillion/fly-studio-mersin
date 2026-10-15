@@ -1,0 +1,473 @@
+<title>Fly Studio Mersin</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: white/pink women-only studio page. Sticky header, split hero with rotating %30 badge, tilted ribbon, class list, perks, booking form that hands off to WhatsApp, hours + address. */
+:root {
+  --bg: #ee6fab;
+  --bg-soft: #f580b8;
+  --pink: #ffffff;
+  --pink-deep: #ffe9f4;
+  --pink-light: rgba(255, 255, 255, .22);
+  --on-pink: #d3358b;
+  --fg: #ffffff;
+  --muted: #fff0f7;
+  --line: rgba(255, 255, 255, .45);
+  --shadow: 0 18px 50px -20px rgba(170, 30, 105, .5);
+  --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: .95; letter-spacing: .005em; text-transform: uppercase; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+h1, h2, h3, p, label, td, address, .eyebrow, .contact, .rating, .logo, .nav a { text-shadow: 0 1px 10px rgba(170, 30, 105, .3); }
+.cls:hover h3, .cls:hover p, .cls:hover .tag, .btn, .btn:hover { text-shadow: none; }
+input::placeholder, textarea::placeholder { color: #e48ab8; }
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+.eyebrow { font-weight: 700; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--pink-deep); }
+.sec { padding-block: 72px; }
+.sec-head { display: grid; gap: 12px; margin-bottom: 36px; max-width: 640px; }
+.sec-head h2 { font-size: clamp(38px, 7vw, 64px); }
+.sec-head p { color: var(--muted); }
+
+/* header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top-in { max-width: 1120px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { text-decoration: none; display: inline-flex; flex-direction: column; line-height: .8; }
+.logo b { font-family: var(--display); font-weight: 800; font-size: 34px; color: var(--pink); letter-spacing: .02em; }
+.logo i { font-style: normal; font-weight: 600; font-size: 13px; color: var(--pink); margin-left: auto; margin-top: -2px; }
+.nav { display: flex; gap: 22px; align-items: center; }
+.nav a { text-decoration: none; font-weight: 600; font-size: 14px; color: var(--muted); transition: color .2s; }
+.nav a:hover { color: var(--pink); }
+.lang { display: inline-flex; border: 1.5px solid var(--pink); border-radius: 999px; overflow: hidden; }
+.lang button { font: 700 12px var(--body); letter-spacing: .08em; border: 0; background: transparent; color: var(--pink); padding: 7px 12px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--pink); color: var(--on-pink); }
+@media (max-width: 720px) { .nav a { display: none; } }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 700 15px var(--body); text-decoration: none; cursor: pointer;
+  padding: 15px 26px; border-radius: 999px; border: 2px solid var(--pink);
+  background: var(--pink); color: var(--on-pink);
+  transition: transform .25s, box-shadow .25s, background .25s, color .25s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.btn.ghost { background: transparent; color: var(--pink); }
+.btn.ghost:hover { background: var(--pink); color: var(--on-pink); }
+
+/* hero */
+.hero { padding-block: 40px 56px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 8px; background: var(--pink-light); color: var(--pink-deep); font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); animation: pulse 1.6s infinite; }
+.hero h1 { font-size: clamp(60px, 11vw, 128px); margin-block: 18px 20px; }
+.hero h1 em { font-style: normal; color: var(--pink); display: block; }
+.hero p.lead { font-size: 18px; color: var(--muted); max-width: 46ch; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.rating { margin-top: 26px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
+.rating b { color: var(--fg); font-size: 18px; }
+.stars { color: var(--pink); letter-spacing: 2px; }
+
+.stage { position: relative; aspect-ratio: 1 / 1.08; max-width: 100%; min-width: 0; }
+.stage .card {
+  position: absolute; inset: 0; border-radius: 42% 42% 28px 28px / 30% 30% 28px 28px;
+  background: linear-gradient(160deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.14) 100%); border: 1.5px solid rgba(255,255,255,.6);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.stage .big { position: absolute; left: 50%; bottom: -4%; transform: translateX(-50%); font-family: var(--display); font-weight: 800; font-size: clamp(150px, 26vw, 300px); line-height: .8; color: transparent; -webkit-text-stroke: 3px color-mix(in srgb, #fff 55%, transparent); letter-spacing: .02em; }
+.stage .wing { position: absolute; top: 14%; left: 50%; width: 62%; transform: translateX(-50%); animation: float 5s ease-in-out infinite; }
+.badge { position: absolute; right: -4%; top: 4%; width: 34%; min-width: 108px; aspect-ratio: 1; }
+.badge .ring { position: absolute; inset: 0; animation: spin 18s linear infinite; }
+.badge .ring text { font: 700 11.5px var(--body); letter-spacing: .16em; fill: var(--pink); }
+.badge .core { position: absolute; inset: 14%; border-radius: 50%; background: #fff; color: var(--on-pink); display: grid; place-content: center; text-align: center; box-shadow: var(--shadow); }
+.badge .core b { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 6vw, 54px); line-height: .85; }
+.badge .core span { font-weight: 700; font-size: 11px; letter-spacing: .14em; }
+.chip { position: absolute; background: #fff; color: var(--on-pink); font-weight: 700; font-size: 13px; padding: 9px 16px; border-radius: 999px; box-shadow: var(--shadow); animation: float 6s ease-in-out infinite; white-space: nowrap; }
+.chip.c1 { left: -3%; top: 46%; }
+.chip.c2 { right: -2%; top: 62%; animation-delay: -2s; }
+.chip.c3 { left: 8%; bottom: 8%; animation-delay: -4s; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .stage { max-width: 420px; margin-inline: auto; width: 100%; } .chip.c1 { left: 0; } .chip.c2 { right: 0; } }
+
+.ani { animation: up .8s cubic-bezier(.2,.7,.2,1) both; }
+.ani.d1 { animation-delay: .08s; } .ani.d2 { animation-delay: .18s; } .ani.d3 { animation-delay: .3s; } .ani.d4 { animation-delay: .42s; }
+
+/* ribbon */
+.ribbon-wrap { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); overflow: hidden; padding-block: 26px; }
+.ribbon { background: var(--pink); color: var(--on-pink); transform: rotate(-1.6deg); width: 110%; margin-left: -5%; overflow: hidden; padding: 14px 0; }
+.ribbon-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+.ribbon-track span { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; padding-right: 40px; }
+.ribbon-track span::after { content: "✦"; margin-left: 40px; opacity: .85; }
+
+/* classes */
+.classes { display: grid; gap: 0; border-top: 1.5px solid var(--fg); }
+.cls { display: grid; grid-template-columns: 70px 1fr auto; gap: 16px; align-items: baseline; padding: 22px 12px; border-bottom: 1px solid var(--line); transition: background .3s, padding .3s, color .3s; }
+.cls:hover { background: var(--pink); color: var(--on-pink); padding-left: 26px; }
+.cls .tag { font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--pink-deep); transition: color .3s; }
+.cls h3 { font-size: clamp(32px, 5vw, 48px); }
+.cls p { color: var(--muted); font-size: 15px; max-width: 38ch; text-align: right; transition: color .3s; }
+.cls:hover .tag, .cls:hover p { color: var(--on-pink); }
+@media (max-width: 640px) { .cls { grid-template-columns: 1fr; gap: 4px; } .cls p { text-align: left; } }
+
+/* offer */
+.offer { background: var(--bg-soft); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.offer-box { display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; }
+.offer-num { font-family: var(--display); font-weight: 800; font-size: clamp(120px, 24vw, 240px); line-height: .8; color: var(--pink); }
+.offer-num small { font-size: .32em; vertical-align: top; }
+.offer h2 { font-size: clamp(34px, 6vw, 56px); margin-block: 10px 14px; }
+.offer p { color: var(--muted); max-width: 52ch; }
+.gift { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; background: #fff; border: 1.5px dashed var(--on-pink); color: var(--on-pink); padding: 10px 18px; border-radius: 14px; font-weight: 700; }
+@media (max-width: 700px) { .offer-box { grid-template-columns: 1fr; gap: 10px; } }
+
+/* perks */
+.perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.perk { padding: 26px 22px; border: 1.5px solid var(--line); border-radius: 24px; transition: transform .3s, border-color .3s, box-shadow .3s; }
+.perk:hover { transform: translateY(-6px); border-color: var(--pink); box-shadow: var(--shadow); }
+.perk svg { width: 40px; height: 40px; stroke: var(--pink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 16px; }
+.perk h3 { font-size: 26px; margin-bottom: 8px; }
+.perk p { font-size: 14px; color: var(--muted); }
+@media (max-width: 900px) { .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .perks { grid-template-columns: 1fr; } }
+
+/* booking */
+.book { display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: start; }
+.book-info h2 { font-size: clamp(38px, 7vw, 64px); margin-block: 12px 16px; }
+.book-info p { color: var(--muted); max-width: 40ch; }
+.contact { margin-top: 24px; display: grid; gap: 4px; font-weight: 700; }
+.contact span { font-weight: 500; color: var(--muted); font-size: 14px; }
+form.card { background: var(--bg-soft); border-radius: 28px; padding: clamp(20px, 4vw, 34px); display: grid; gap: 16px; min-width: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+label { display: grid; gap: 6px; font-weight: 700; font-size: 13px; letter-spacing: .04em; min-width: 0; }
+input, select, textarea { font: 500 16px var(--body); color: var(--on-pink); background: #fff; border: 1.5px solid transparent; border-radius: 14px; padding: 13px 14px; width: 100%; min-width: 0; transition: border-color .2s, box-shadow .2s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pink) 20%, transparent); }
+textarea { resize: vertical; min-height: 76px; }
+.done { background: var(--bg); border: 1.5px solid var(--pink); border-radius: 18px; padding: 18px; display: grid; gap: 12px; }
+.done p { font-size: 14px; color: var(--muted); }
+.done pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 500 13px var(--body); background: var(--bg-soft); border-radius: 12px; padding: 12px; color: var(--fg); }
+.err { color: var(--pink-deep); font-size: 13px; font-weight: 600; min-height: 1.2em; }
+@media (max-width: 860px) { .book { grid-template-columns: 1fr; } }
+
+/* visit */
+.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.box { border: 1.5px solid var(--line); border-radius: 28px; padding: clamp(22px, 4vw, 34px); min-width: 0; }
+.box h3 { font-size: 34px; margin-bottom: 18px; color: var(--pink); }
+.hours { width: 100%; border-collapse: collapse; }
+.hours td { padding: 11px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.hours td:last-child { text-align: right; font-weight: 700; }
+.hours tr.today td { background: var(--pink-light); color: var(--pink-deep); }
+.hours tr.today td:first-child { border-radius: 10px 0 0 10px; }
+.hours tr.today td:last-child { border-radius: 0 10px 10px 0; }
+.addr { font-style: normal; font-size: 18px; line-height: 1.5; margin-bottom: 20px; }
+@media (max-width: 760px) { .visit { grid-template-columns: 1fr; } }
+
+footer { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: 44px max(16px, env(safe-area-inset-right, 0px)) calc(36px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: var(--bg); color: var(--pink-deep); border-top: 1.5px solid var(--line); }
+.foot-in { max-width: 1120px; margin-inline: auto; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: end; }
+.foot-in .w { font-family: var(--display); font-weight: 800; font-size: clamp(44px, 9vw, 84px); line-height: .85; text-transform: uppercase; }
+.foot-in p { font-size: 14px; opacity: .92; }
+.foot-in a { font-weight: 700; }
+
+@keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.stage .wing { --x: -50%; animation-name: floatw; }
+@keyframes floatw { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -12px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.7); opacity: .4; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="#top" aria-label="Fly Studio Mersin"><b>FLY</b><i>studio</i></a>
+    <nav class="nav" aria-label="Menu">
+      <a href="#dersler" data-tr="Dersler" data-en="Classes">Dersler</a>
+      <a href="#firsat" data-tr="Fırsat" data-en="Offer">Fırsat</a>
+      <a href="#rezervasyon" data-tr="Rezervasyon" data-en="Booking">Rezervasyon</a>
+      <a href="#ziyaret" data-tr="İletişim" data-en="Visit">İletişim</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Dil / Language">
+      <button type="button" data-set="tr" aria-pressed="true">TR</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div>
+      <span class="pill ani"><span data-tr="Erken kayıt dönemi başladı" data-en="Early registration is open">Erken kayıt dönemi başladı</span></span>
+      <h1 class="ani d1"><span data-tr="Mersin'de" data-en="A new you">Mersin'de</span> <em data-tr="yeni bir sen" data-en="in Mersin">yeni bir sen</em></h1>
+      <p class="lead ani d2" data-tr="Kadınlara özel konseptiyle Fly Studio. Pilates, reformer, yoga ve daha fazlası; enerjini keşfet, sınırlarını zorla." data-en="Fly Studio is built for women only. Pilates, reformer, yoga and more. Find your energy and push your limits.">Kadınlara özel konseptiyle Fly Studio. Pilates, reformer, yoga ve daha fazlası; enerjini keşfet, sınırlarını zorla.</p>
+      <div class="cta ani d3">
+        <a class="btn" href="#rezervasyon" data-tr="Yerini ayırt" data-en="Reserve your spot">Yerini ayırt</a>
+        <a class="btn ghost" href="#dersler" data-tr="Dersleri gör" data-en="See classes">Dersleri gör</a>
+      </div>
+      <div class="rating ani d4"><span class="stars" aria-hidden="true">★★★★★</span><b>5.0</b><span data-tr="Google'da, 13 değerlendirme" data-en="on Google, 13 reviews">Google'da, 13 değerlendirme</span></div>
+    </div>
+
+    <div class="stage ani d2" aria-hidden="true">
+      <div class="card">
+        <svg class="wing" viewBox="0 0 200 120" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 96 C 60 96 96 70 112 34 C 128 8 160 4 184 10 C 170 28 160 36 146 42 C 164 40 176 38 188 32 C 176 56 156 66 132 70 C 150 70 160 68 170 64 C 152 88 124 98 92 100 C 62 102 40 100 20 96 Z"/>
+          <path d="M60 90 C 90 84 116 66 132 44" opacity=".6"/>
+        </svg>
+        <div class="big">FLY</div>
+      </div>
+      <div class="badge">
+        <svg class="ring" viewBox="0 0 120 120"><defs><path id="c" d="M60 60 m-48 0 a48 48 0 1 1 96 0 a48 48 0 1 1 -96 0"/></defs><text><textPath href="#c">FLY STUDIO · MERSİN · DAHA GÜÇLÜ · DAHA SEN ·</textPath></text></svg>
+        <div class="core"><b>%30</b><span data-tr="İNDİRİM" data-en="OFF">İNDİRİM</span></div>
+      </div>
+      <span class="chip c1">Reformer</span>
+      <span class="chip c2">Pilates</span>
+      <span class="chip c3">Yoga</span>
+    </div>
+  </section>
+
+  <div class="ribbon-wrap" aria-hidden="true">
+    <div class="ribbon"><div class="ribbon-track" id="rt"></div></div>
+  </div>
+
+  <section class="wrap sec" id="dersler">
+    <div class="sec-head">
+      <span class="eyebrow" data-tr="Yedi branş, tek stüdyo" data-en="Seven disciplines, one studio">Yedi branş, tek stüdyo</span>
+      <h2 data-tr="Derslerimiz" data-en="Our classes">Derslerimiz</h2>
+      <p data-tr="Güç, esneklik ve kondisyon için farklı tempolarda dersler. Hangisi sana uyuyorsa onu seç, istersen hepsini dene." data-en="Classes at different tempos for strength, flexibility and fitness. Pick what suits you, or try them all.">Güç, esneklik ve kondisyon için farklı tempolarda dersler. Hangisi sana uyuyorsa onu seç, istersen hepsini dene.</p>
+    </div>
+    <div class="classes" id="classes"></div>
+  </section>
+
+  <section class="offer sec" id="firsat">
+    <div class="wrap offer-box">
+      <div class="offer-num">%30<small>*</small></div>
+      <div>
+        <span class="eyebrow" data-tr="Açılışa özel" data-en="Opening offer">Açılışa özel</span>
+        <h2 data-tr="İlk 50 kişiye indirimli üyelik" data-en="30% off membership for the first 50">İlk 50 kişiye indirimli üyelik</h2>
+        <p data-tr="Sınırlı kontenjan, avantajlı fiyatlar. Erken kayıt fırsatını kaçırma; şimdi kaydol, ayrıcalıkları yakala." data-en="Limited places and better prices. Register early and lock in the opening benefits.">Sınırlı kontenjan, avantajlı fiyatlar. Erken kayıt fırsatını kaçırma; şimdi kaydol, ayrıcalıkları yakala.</p>
+        <span class="gift"><span aria-hidden="true">🎁</span><span data-tr="+ 2 ay hediye üyelik" data-en="+ 2 months free membership">+ 2 ay hediye üyelik</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head">
+      <span class="eyebrow" data-tr="Neden Fly" data-en="Why Fly">Neden Fly</span>
+      <h2 data-tr="Daha güçlü. Daha sağlıklı. Daha sen." data-en="Stronger. Healthier. More you.">Daha güçlü. Daha sağlıklı. Daha sen.</h2>
+    </div>
+    <div class="perks">
+      <div class="perk">
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="12" r="6"/><path d="M8 34c0-7 5-12 12-12s12 5 12 12"/></svg>
+        <h3 data-tr="Uzman eğitmenler" data-en="Expert coaches">Uzman eğitmenler</h3>
+        <p data-tr="Seviyene göre yönlendiren, hareketi doğru öğreten kadro." data-en="A team that guides to your level and teaches movement properly.">Seviyene göre yönlendiren, hareketi doğru öğreten kadro.</p>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 40 40"><rect x="4" y="16" width="6" height="8" rx="2"/><rect x="30" y="16" width="6" height="8" rx="2"/><path d="M10 20h20M2 18v4M38 18v4"/></svg>
+        <h3 data-tr="Modern ekipman" data-en="Modern equipment">Modern ekipman</h3>
+        <p data-tr="Reformer yataklarından spinning bisikletlerine yeni nesil ekipmanlar." data-en="New-generation gear, from reformer beds to spinning bikes.">Reformer yataklarından spinning bisikletlerine yeni nesil ekipmanlar.</p>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 40 40"><rect x="6" y="9" width="28" height="25" rx="4"/><path d="M6 17h28M13 5v7M27 5v7"/></svg>
+        <h3 data-tr="Esnek rezervasyon" data-en="Flexible booking">Esnek rezervasyon</h3>
+        <p data-tr="Gününe uyan saati seç, yerini önceden ayırt." data-en="Pick the time that fits your day and book ahead.">Gününe uyan saati seç, yerini önceden ayırt.</p>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 40 40"><path d="M20 36s11-10 11-18a11 11 0 0 0-22 0c0 8 11 18 11 18Z"/><circle cx="20" cy="18" r="4"/></svg>
+        <h3 data-tr="Merkezi konum" data-en="Central location">Merkezi konum</h3>
+        <p data-tr="Yenişehir, Çiftlikköy'de kolay ulaşılır bir adres." data-en="Easy to reach in Çiftlikköy, Yenişehir.">Yenişehir, Çiftlikköy'de kolay ulaşılır bir adres.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="rezervasyon">
+    <div class="book">
+      <div class="book-info">
+        <span class="eyebrow" data-tr="Ön kayıt" data-en="Pre-registration">Ön kayıt</span>
+        <h2 data-tr="Yerini ayırt" data-en="Reserve your spot">Yerini ayırt</h2>
+        <p data-tr="Dersi, günü ve saati seç. Bilgilerin hazır bir WhatsApp mesajına dönüşür, stüdyo seni teyit için arar." data-en="Choose a class, day and time. Your details become a ready WhatsApp message and the studio confirms with you.">Dersi, günü ve saati seç. Bilgilerin hazır bir WhatsApp mesajına dönüşür, stüdyo seni teyit için arar.</p>
+        <div class="contact">
+          <div>0552 993 86 86</div>
+          <span>info@flystudiomersin.com</span>
+        </div>
+      </div>
+
+      <form class="card" id="f" novalidate>
+        <div class="row">
+          <label for="nm"><span data-tr="Ad Soyad" data-en="Full name">Ad Soyad</span>
+            <input id="nm" type="text" autocomplete="name" required>
+          </label>
+          <label for="ph"><span data-tr="Telefon" data-en="Phone">Telefon</span>
+            <input id="ph" type="tel" autocomplete="tel" inputmode="tel" placeholder="05xx xxx xx xx" required>
+          </label>
+        </div>
+        <label for="cl"><span data-tr="Ders" data-en="Class">Ders</span>
+          <select id="cl" required></select>
+        </label>
+        <div class="row">
+          <label for="dt"><span data-tr="Tarih" data-en="Date">Tarih</span>
+            <input id="dt" type="date" required>
+          </label>
+          <label for="tm"><span data-tr="Saat" data-en="Time">Saat</span>
+            <select id="tm" required></select>
+          </label>
+        </div>
+        <label for="nt"><span data-tr="Not (isteğe bağlı)" data-en="Note (optional)">Not (isteğe bağlı)</span>
+          <textarea id="nt"></textarea>
+        </label>
+        <div class="err" id="err" role="alert"></div>
+        <button class="btn" type="submit" data-tr="Mesajı hazırla" data-en="Prepare message">Mesajı hazırla</button>
+        <div class="done" id="done" hidden>
+          <p data-tr="Mesajın hazır. Gönderdiğinde rezervasyon talebin stüdyoya ulaşır." data-en="Your message is ready. Your request reaches the studio once you send it.">Mesajın hazır. Gönderdiğinde rezervasyon talebin stüdyoya ulaşır.</p>
+          <pre id="msg"></pre>
+          <a class="btn" id="wa" href="https://wa.me/905529938686" target="_blank" rel="noopener" data-tr="WhatsApp'ta gönder" data-en="Send on WhatsApp">WhatsApp'ta gönder</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="ziyaret" style="padding-top:0">
+    <div class="visit">
+      <div class="box">
+        <h3 data-tr="Çalışma saatleri" data-en="Opening hours">Çalışma saatleri</h3>
+        <table class="hours" id="hours"></table>
+      </div>
+      <div class="box">
+        <h3 data-tr="Adres" data-en="Address">Adres</h3>
+        <address class="addr">Çiftlikköy, Vali Şenol Engin Cd.<br>Savaşkanlar Apt No:76 /A<br>33110 Yenişehir / Mersin</address>
+        <div class="cta" style="margin-top:0">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Fly+Studio+Kad%C4%B1nlara+%C3%96zel+Spor+Mersin" target="_blank" rel="noopener" data-tr="Yol tarifi" data-en="Directions">Yol tarifi</a>
+          <a class="btn ghost" href="https://www.instagram.com/flystudiomersin/" target="_blank" rel="noopener">@flystudiomersin</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <div class="w">Fly studio<br>Mersin</div>
+    <p><span data-tr="Kadınlara özel spor stüdyosu" data-en="Women-only fitness studio">Kadınlara özel spor stüdyosu</span><br>0552 993 86 86 · info@flystudiomersin.com<br><a href="https://www.instagram.com/flystudiomersin/" target="_blank" rel="noopener">Instagram</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var lang = "tr";
+  var CLASSES = [
+    { tag: ["Mat", "Mat"], n: ["Pilates", "Pilates"], d: ["Kontrollü hareketlerle güç, esneklik ve duruş.", "Controlled movement for strength, flexibility and posture."] },
+    { tag: ["Ekipmanlı", "Equipment"], n: ["Reformer", "Reformer"], d: ["Yay dirençli yatakta derinlemesine, hassas çalışma.", "Deep, precise work on the spring-resistance bed."] },
+    { tag: ["Mind & Body", "Mind & Body"], n: ["Yoga", "Yoga"], d: ["Nefes, denge ve esneklikle beden ve zihin uyumu.", "Breath, balance and flexibility for body and mind."] },
+    { tag: ["Kardiyo", "Cardio"], n: ["Zumba", "Zumba"], d: ["Dans temelli, yüksek enerjili kardiyo.", "Dance-based, high-energy cardio."] },
+    { tag: ["Kardiyo", "Cardio"], n: ["Spinning", "Spinning"], d: ["Müzik eşliğinde tempolu bisiklet antrenmanı.", "Music-driven indoor cycling."] },
+    { tag: ["Güç", "Strength"], n: ["Crunch", "Crunch"], d: ["Karın ve merkez bölgeye odaklı yoğun seri.", "Intense sets focused on the core."] },
+    { tag: ["Tüm vücut", "Full body"], n: ["Fonksiyonel Antrenman", "Functional Training"], d: ["Günlük hareketleri güçlendiren tüm vücut çalışması.", "Full-body work that builds everyday strength."] }
+  ];
+  var DAYS = [
+    { k: 1, n: ["Pazartesi", "Monday"], h: "10:00 – 23:00" },
+    { k: 2, n: ["Salı", "Tuesday"], h: "10:00 – 23:00" },
+    { k: 3, n: ["Çarşamba", "Wednesday"], h: "10:00 – 23:00" },
+    { k: 4, n: ["Perşembe", "Thursday"], h: "10:00 – 23:00" },
+    { k: 5, n: ["Cuma", "Friday"], h: "10:00 – 23:00" },
+    { k: 6, n: ["Cumartesi", "Saturday"], h: "10:00 – 18:00" },
+    { k: 0, n: ["Pazar", "Sunday"], h: "10:00 – 18:00" }
+  ];
+  var T = {
+    tr: { pick: "Saat seçin", closed: "Bu tarih geçmişte", needs: "Lütfen ad, telefon, ders, tarih ve saati doldurun.", hi: "Merhaba, Fly Studio Mersin için rezervasyon talebim:", nm: "Ad Soyad", ph: "Telefon", cl: "Ders", dt: "Tarih", tm: "Saat", nt: "Not", ty: "Teşekkürler!" },
+    en: { pick: "Select a time", closed: "That date has passed", needs: "Please fill in name, phone, class, date and time.", hi: "Hello, my booking request for Fly Studio Mersin:", nm: "Name", ph: "Phone", cl: "Class", dt: "Date", tm: "Time", nt: "Note", ty: "Thank you!" }
+  };
+  function $(id) { return document.getElementById(id); }
+  var li = lang === "tr" ? 0 : 1;
+
+  function ribbon() {
+    var t = lang === "tr" ? "İlk 50 kişiye %30 indirimli üyelik fırsatı" : "30% off membership for the first 50";
+    var h = "";
+    for (var i = 0; i < 12; i++) h += "<span>" + t + "</span>";
+    $("rt").innerHTML = h;
+  }
+  function classes() {
+    var h = "", o = "";
+    CLASSES.forEach(function (c, i) {
+      h += '<div class="cls"><span class="tag">' + c.tag[li] + "</span><h3>" + c.n[li] + "</h3><p>" + c.d[li] + "</p></div>";
+      o += '<option value="' + i + '">' + c.n[li] + "</option>";
+    });
+    $("classes").innerHTML = h;
+    var cur = $("cl").value;
+    $("cl").innerHTML = o;
+    if (cur) $("cl").value = cur;
+  }
+  function hours() {
+    var today = new Date().getDay(), h = "";
+    DAYS.forEach(function (d) {
+      h += "<tr" + (d.k === today ? ' class="today"' : "") + "><td>" + d.n[li] + "</td><td>" + d.h + "</td></tr>";
+    });
+    $("hours").innerHTML = h;
+  }
+  function slots() {
+    var v = $("dt").value, sel = $("tm"), keep = sel.value, h = '<option value="">' + T[lang].pick + "</option>";
+    if (v) {
+      var p = v.split("-"), day = new Date(+p[0], +p[1] - 1, +p[2]).getDay();
+      var last = (day === 0 || day === 6) ? 17 : 22;
+      for (var x = 10; x <= last; x++) {
+        var s = (x < 10 ? "0" : "") + x + ":00";
+        h += '<option value="' + s + '">' + s + "</option>";
+      }
+    }
+    sel.innerHTML = h;
+    if (keep) sel.value = keep;
+  }
+  function apply() {
+    li = lang === "tr" ? 0 : 1;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-tr]").forEach(function (el) { el.textContent = el.getAttribute("data-" + lang); });
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-set") === lang ? "true" : "false"); });
+    ribbon(); classes(); hours(); slots();
+    $("err").textContent = "";
+  }
+
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { lang = b.getAttribute("data-set"); apply(); });
+  });
+
+  var d = new Date();
+  var iso = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  $("dt").min = iso;
+  $("dt").addEventListener("change", slots);
+
+  $("f").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nm = $("nm").value.trim(), ph = $("ph").value.trim(), dt = $("dt").value, tm = $("tm").value;
+    var cn = CLASSES[+$("cl").value].n[li], note = $("nt").value.trim();
+    if (!nm || !ph || !dt || !tm) { $("err").textContent = T[lang].needs; return; }
+    if (dt < iso) { $("err").textContent = T[lang].closed; return; }
+    $("err").textContent = "";
+    var p = dt.split("-"), shown = p[2] + "." + p[1] + "." + p[0];
+    var t = T[lang];
+    var text = t.hi + "\n" + t.nm + ": " + nm + "\n" + t.ph + ": " + ph + "\n" + t.cl + ": " + cn + "\n" + t.dt + ": " + shown + "\n" + t.tm + ": " + tm + (note ? "\n" + t.nt + ": " + note : "");
+    $("msg").textContent = text;
+    $("wa").href = "https://wa.me/905529938686?text=" + encodeURIComponent(text);
+    $("done").hidden = false;
+    $("done").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  apply();
+})();
+</script>
