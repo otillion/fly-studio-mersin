@@ -267,63 +267,12 @@ footer { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); pa
 .foot-big:hover { color: var(--pink-light); }
 .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 21px; }
 
-/* ===== Type + spacing scale measured from otillion.github.io/elite-life (desktop), in rem so one root size scales everything ===== */
-body { font-size: 1rem; line-height: 1.6; }
-.eyebrow { font-size: .74rem; letter-spacing: .22em; }
-.sec { padding-block: clamp(72px, 9vw, 130px); }
-.sec-head h2, .h2 { font-size: clamp(2.4rem, 5.2vw, 4rem); line-height: 1.08; letter-spacing: -.01em; }
-.sec-head p { font-size: 1.08rem; line-height: 1.6; max-width: 56ch; }
-.top { padding-block: 14px; }
-.top.scrolled { padding-block: 10px; }
-.nav-l a, .nav-r .lk { font-size: .88rem; }
-.logo .lg { font-size: 2.1rem; }
-.top.scrolled .logo .lg { font-size: 1.8rem; }
-.logo .ls { font-size: .8rem; }
-.lang button { font-size: .74rem; padding: 5px 11px; }
-.btn { font-size: .95rem; padding: 15px 30px; }
-.btn.sm { font-size: .88rem; padding: 10px 22px; }
-.pill { font-size: .74rem; padding: 9px 18px; letter-spacing: .2em; }
-.hero { padding-top: clamp(40px, 7vw, 100px); }
-.letters { font-size: clamp(140px, 26vw, 340px); }
-.sub { font-size: clamp(2.6rem, 6.2vw, 6rem); }
-.lead { font-size: 1.08rem; max-width: 560px; font-weight: 400; }
-.rating { font-size: .88rem; }
-.rating b { font-size: 1.8rem; }
-.track span { font-size: 2rem; }
-.quote { font-size: clamp(2rem, 4.4vw, 4rem); }
-.grid { gap: 18px; }
-.cls { min-height: 300px; border-radius: 26px; padding: 34px 26px 30px; }
-.cls h3 { font-size: 1.7rem; line-height: 1.15; margin-bottom: 10px; }
-.cls p { font-size: .88rem; line-height: 1.6; }
-.cls.all h3 { font-size: 1.9rem; }
-.tag { font-size: .74rem; padding: 7px 14px; letter-spacing: .16em; }
-.wm { font-size: 190px; top: -20px; }
-.offer .h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
-.offer p.t { font-size: 1.08rem; }
-.chip { font-size: .95rem; padding: 10px 22px; }
-.chip b { font-size: 2rem; }
-.ring { width: 130px; height: 130px; }
-.bub.fill { font-size: clamp(1.2rem, 2vw, 1.7rem); }
-.bub svg { width: 60%; }
-.book-info p.t { font-size: 1.08rem; }
-.mini { font-size: 1rem; padding: 18px 22px; border-radius: 22px; }
-form.card { border-radius: 26px; }
-label { font-size: .88rem; }
-input, select, textarea { font-size: 1rem; padding: 14px 16px; border-radius: 14px; }
-.err { font-size: .88rem; }
-.done pre { font-size: .95rem; }
-.hours td { font-size: .95rem; padding: 12px 12px; }
-.addr { font-size: 1.1rem; }
-.box { border-radius: 26px; padding: 34px 30px; }
-.box h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
-.foot-row { font-size: .88rem; }
 @media (max-width: 560px) {
   .logo .lg { font-size: 1.8rem; }
   .top.scrolled .logo .lg { font-size: 1.6rem; }
   .logo .ls { font-size: .7rem; }
   .lang button { font-size: .7rem; padding: 5px 9px; }
   .btn.sm { font-size: .82rem; padding: 9px 14px; }
-  .cls { min-height: 270px; }
 }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
