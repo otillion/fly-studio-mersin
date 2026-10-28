@@ -26,8 +26,10 @@ body {
   padding-block: 0;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  overflow-x: hidden;
+  overflow-x: clip;
 }
+html { overflow-x: clip; max-width: 100%; }
+.hero, .offer, .sec { overflow-x: clip; }
 h1, h2, h3, p { margin: 0; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 8px; }
@@ -176,6 +178,20 @@ a { color: inherit; }
 .cls p { position: relative; font-size: 21px; line-height: 1.45; }
 .cls.all { background: var(--grad); color: #fff; justify-content: flex-end; }
 .cls.all h3 { font-size: clamp(48px, 5vw, 64px); }
+
+
+/* illustrations */
+.ill { position: relative; width: 100%; max-width: 230px; height: auto; align-self: center; fill: none; stroke: var(--pink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke .5s, transform .8s var(--ease); }
+.ill .f { fill: var(--pink-light); stroke: none; transition: fill .5s; }
+.cls:hover .ill { stroke: #fff; transform: translateY(-6px) scale(1.04); }
+.cls:hover .ill .f { fill: rgba(255,255,255,.28); }
+.scene { display: block; width: 100%; height: auto; fill: none; stroke: var(--pink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; margin-top: 28px; }
+.scene .f { fill: var(--pink-light); stroke: none; }
+.scene .s { fill: var(--pink); stroke: none; }
+.scene-wide { margin: 0 0 22px; border-radius: 26px; background: var(--bg-soft); border: 1.5px solid var(--line); padding: 10px 18px; }
+.scene .sw { animation: floaty 6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes floaty { to { transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .scene .sw { animation: none; } }
 
 /* offer */
 .offer { position: relative; background: var(--bg-soft); overflow: hidden; }
@@ -439,6 +455,7 @@ input, select, textarea { font-size: 1rem; padding: 14px 16px; border-radius: 14
         <span class="eyebrow rv" data-tr="Ön kayıt" data-en="Pre-registration">Ön kayıt</span>
         <h2 class="h2" data-split data-tr="Yerini ayırt" data-en="Reserve your spot">Yerini ayırt</h2>
         <p class="t rv" data-tr="Dersi, günü ve saati seç. Bilgilerin hazır bir mesaja dönüşür, mesajı Instagram'dan stüdyoya gönderirsin." data-en="Choose a class, day and time. Your details become a ready message that you send to the studio on Instagram.">Dersi, günü ve saati seç. Bilgilerin hazır bir mesaja dönüşür, mesajı Instagram'dan stüdyoya gönderirsin.</p>
+        <div class="rv" aria-hidden="true"><svg class="scene" viewBox="0 0 640 150" aria-hidden="true"><path class="f" d="M40 150V70a60 60 0 0 1 120 0v80z"/><path d="M40 150V70a60 60 0 0 1 120 0v80M100 10v140"/><path class="f" d="M200 150V70a60 60 0 0 1 120 0v80z"/><path d="M200 150V70a60 60 0 0 1 120 0v80"/><path class="f" d="M360 150V70a60 60 0 0 1 120 0v80z"/><path d="M360 150V70a60 60 0 0 1 120 0v80"/><g class="sw"><path d="M520 150v-40M520 110q-26-8-28-36 24 6 28 36zM520 110q26-8 28-36-24 6-28 36z"/></g><g class="sw" style="animation-delay:-2s"><path d="M590 150v-30M590 120q-18-6-20-26 18 4 20 26zM590 120q18-6 20-26-18 4-20 26z"/></g><path d="M0 148h640"/></svg></div>
         <div class="mini rv"><a href="https://www.instagram.com/flystudiomersin/" target="_blank" rel="noopener">@flystudiomersin</a><span>Instagram</span></div>
       </div>
 
@@ -469,6 +486,7 @@ input, select, textarea { font-size: 1rem; padding: 14px 16px; border-radius: 14
   </section>
 
   <section class="wrap sec" id="ziyaret" style="padding-top:0">
+    <div class="scene-wide rv" aria-hidden="true"><svg class="scene" viewBox="0 0 640 150" aria-hidden="true"><path class="f" d="M40 150V70a60 60 0 0 1 120 0v80z"/><path d="M40 150V70a60 60 0 0 1 120 0v80M100 10v140"/><path class="f" d="M200 150V70a60 60 0 0 1 120 0v80z"/><path d="M200 150V70a60 60 0 0 1 120 0v80"/><path class="f" d="M360 150V70a60 60 0 0 1 120 0v80z"/><path d="M360 150V70a60 60 0 0 1 120 0v80"/><g class="sw"><path d="M520 150v-40M520 110q-26-8-28-36 24 6 28 36zM520 110q26-8 28-36-24 6-28 36z"/></g><g class="sw" style="animation-delay:-2s"><path d="M590 150v-30M590 120q-18-6-20-26 18 4 20 26zM590 120q18-6 20-26-18 4-20 26z"/></g><path d="M0 148h640"/></svg></div>
     <div class="visit">
       <div class="box rv">
         <h3 data-tr="Çalışma saatleri" data-en="Opening hours">Çalışma saatleri</h3>
@@ -554,10 +572,20 @@ input, select, textarea { font-size: 1rem; padding: 14px 16px; border-radius: 14
       $(b[0]).innerHTML = h;
     });
   }
+
+  var ILL = [
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><ellipse class="f" cx="100" cy="104" rx="84" ry="10"/><circle class="f" cx="150" cy="78" r="26"/><circle cx="150" cy="78" r="26"/><path d="M124 78h52"/><circle cx="62" cy="34" r="9"/><path d="M62 43v22l24 14M62 65L36 82M62 52l30-8M62 52L40 40"/></svg>',
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><rect class="f" x="18" y="74" width="164" height="16" rx="8"/><rect x="18" y="74" width="164" height="16" rx="8"/><path d="M30 90v16M170 90v16M52 74V56h28"/><circle cx="118" cy="38" r="9"/><path d="M118 47l-10 20 28 7M108 67l-22 7M122 54l26-10"/></svg>',
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><ellipse class="f" cx="100" cy="104" rx="76" ry="9"/><circle cx="100" cy="26" r="10"/><path d="M100 36v34M100 70L72 98M100 70l28 28M100 48L66 34M100 48l34-14"/><path d="M140 14l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>',
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><ellipse class="f" cx="100" cy="106" rx="80" ry="8"/><circle cx="100" cy="24" r="10"/><path d="M100 34v32l-22 30M100 66l26 20M100 44L72 22M100 44l30-18"/><path d="M158 40q8-8 16 0M164 54q6-6 12 0M30 50q8-8 16 0"/></svg>',
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><circle class="f" cx="50" cy="82" r="26"/><circle cx="50" cy="82" r="26"/><circle cx="152" cy="82" r="26"/><circle cx="50" cy="82" r="4"/><circle cx="152" cy="82" r="4"/><path d="M50 82l30-38h42M122 44l30 38M82 44L72 30h-12M122 44l-6-12h14"/></svg>',
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><ellipse class="f" cx="100" cy="106" rx="80" ry="8"/><circle cx="100" cy="50" r="9"/><path d="M100 59v26l-18 18M100 85l18 18M100 66L58 54M100 66l42-12"/><rect x="38" y="48" width="12" height="12" rx="3"/><rect x="150" y="48" width="12" height="12" rx="3"/></svg>',
+    '<svg class="ill" viewBox="0 0 200 120" aria-hidden="true"><ellipse class="f" cx="100" cy="106" rx="80" ry="8"/><rect class="f" x="30" y="62" width="14" height="30" rx="4"/><rect x="30" y="62" width="14" height="30" rx="4"/><rect x="156" y="62" width="14" height="30" rx="4"/><path d="M44 77h32M124 77h32"/><path d="M82 44h36l8 52H74z"/><path d="M92 44q8-16 16 0"/></svg>'
+  ];
   function classes() {
     var t = T[lang], h = "", o = "";
     CLASSES.forEach(function (c, i) {
-      h += '<div class="cell" style="--i:' + i + '"><article class="cls tilt"><span class="wm" aria-hidden="true">' + c.n[li].charAt(0) + '</span><span class="tag">' + c.tag[li] + '</span><div><h3>' + c.n[li] + "</h3><p>" + c.d[li] + "</p></div></article></div>";
+      h += '<div class="cell" style="--i:' + i + '"><article class="cls tilt"><span class="wm" aria-hidden="true">' + c.n[li].charAt(0) + '</span><span class="tag">' + c.tag[li] + '</span>' + (ILL[i] || '') + '<div><h3>' + c.n[li] + "</h3><p>" + c.d[li] + "</p></div></article></div>";
       o += '<option value="' + i + '">' + c.n[li] + "</option>";
     });
     h += '<div class="cell" style="--i:7"><article class="cls all tilt"><span class="wm" aria-hidden="true" style="color:#fff">✦</span><div><h3>' + t.all + "</h3><p>" + t.allp + '</p><p style="margin-top:18px"><a class="btn white" href="#rezervasyon">' + t.cta + "</a></p></div></article></div>";
